@@ -4,21 +4,21 @@ const pg = require('pg');
 const app = express();
 const path = require('path');
 
-const client = new pg.Client(process.env.DATABASE_URL || 'postgres://localhost/ acme_hr_db')
+const client = new pg.Client(process.env.DATABASE_URL || 'postgres://localhost/acme_hr_db')
 
 // static routes here (you only need these for deployment)
 app.use(express.static(path.join(__dirname, '../client/dist')));
 
 // app routes here
-app.get('/', (req, res)=> res.sendFile(path.join(__dirname, '../client/dist/index.html')))
+app.get('/', (req, res) => res.sendFile(path.join(__dirname, '../client/dist/index.html')))
 app.get('/api/employees', async (req, res, next) => {
     try{
         const SQL = `SELECT * from employees;`
-        const result = await client.query(SQL)
-        res.send(result.rows)
+        const result = await client.query(SQL);
+        res.send(result.rows);
 
     }catch(error){
-        next(error)
+        next(error);
     }
 });
 
@@ -38,7 +38,7 @@ const init = async () => {
       INSERT INTO employees(name, is_admin) VALUES('Jay', true);
       INSERT INTO employees(name, is_admin) VALUES('Jessica', false);
       INSERT INTO employees(name, is_admin) VALUES('John', false);
-    `
+    `;
     await client.query(SQL)
     console.log('data seeded')
     const port = process.env.PORT || 3000
@@ -46,4 +46,4 @@ const init = async () => {
 }
 
 // init function invocation
-init()
+init();
