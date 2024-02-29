@@ -1,4 +1,4 @@
 # Workshop Acme Employees 
 
-- see instructions in canvas
+See deployed site [here](https://block-31-acme-employees.onrender.com)! 
 
