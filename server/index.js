@@ -31,7 +31,7 @@ const init = async () => {
 
       CREATE TABLE employees(
         id SERIAL PRIMARY KEY,
-        name VARCHAR(255),
+        name VARCHAR(50),
         is_admin BOOLEAN DEFAULT FALSE
       );
 
